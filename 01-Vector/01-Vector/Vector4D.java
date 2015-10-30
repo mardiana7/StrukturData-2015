@@ -1,29 +1,17 @@
-
-public class Vector3D
+ 
+import java.util.Date;
+import java.lang.*;
+public class Vector4D extends Vector3D
 {
-    public double x, y, z;
+    private Date t;
    
-
-    /**
-     * Constructor for objects of class Vektor3D
-     */
-    public Vector3D(double x, double y, double z)
+    public Vector4D(double x, double y, double z, Date t)
     {
-        this. x=x;
-        this. y=y;
-        this. z=z;
-    }
-   public double getX () {
-       return x;
-    }
-    public double getY () {
-       return y;
-    }
-    public double getZ () {
-       return z;
-    }
+        super(x,y,z);
+        this.t=t; }
+        
+        public Date getT() {
+            return t;
     
-    
-      
-     
+    }
 }
