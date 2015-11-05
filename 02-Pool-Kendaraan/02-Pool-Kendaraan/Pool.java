@@ -1,19 +1,23 @@
+package Transportasi;
+
 public class Pool  
 {
-    private Kendaraan[] kendaraan = new Kendaraan[25];
-     
+    private Kendaraan[] kendaraan;
+    
     public Pool( Kendaraan[] kendaraan)
     {
+        if (kendaraan == null)
+        kendaraan = new Kendaraan[0];
         this.kendaraan=kendaraan;
     }
     
     public int jumlah()
     {
-        return jumlah;
+        return kendaraan.length;
     }
     
     public Kendaraan[] daftarKendaraan()
     {   
-       return daftarKendaraan;
+       return kendaraan;
     }
 }
