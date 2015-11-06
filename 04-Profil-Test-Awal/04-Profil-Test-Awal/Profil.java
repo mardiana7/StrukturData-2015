@@ -1,7 +1,4 @@
-package Komdat;
 
-
- 
 public class Profil
 {
     
