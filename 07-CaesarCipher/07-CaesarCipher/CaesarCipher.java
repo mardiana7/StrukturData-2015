@@ -1,4 +1,5 @@
 package Komdat.prak.Caesar;
+
  
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -9,7 +10,7 @@ public class CaesarCipher
 
     private int shift=3; 
     
-    public void CaesarCipher(int shift) throws IOException
+    public CaesarCipher(int shift) throws IOException
     {
          this.shift=shift;
     }
@@ -30,7 +31,7 @@ public class CaesarCipher
             
             while (karakter != -1) {
                 // Lakukan sesuatu dengan data yang dibaca => Tampikan
-               karakter=shift;
+               karakter+=shift;
                keluaran.write(karakter);
                 // Coba baca lagi dari stream
                 karakter = masukan.read();
@@ -62,7 +63,7 @@ public class CaesarCipher
             
             while (karakter != -1) {
                 // Lakukan sesuatu dengan data yang dibaca => Tampikan
-               karakter=shift;
+               karakter-=shift;
                keluaran.write(karakter);
                 // Coba baca lagi dari stream
                 karakter = masukan.read();
@@ -77,15 +78,5 @@ public class CaesarCipher
           
         } 
     }
-     
-    public static void main (String[] args) {
-         try {
-         CaesarCipher k = new  CaesarCipher();
-         k.enkripsi("asal.txt", "tujuan.txt");
-         k.dekripsi("asal.txt", "tujuan.txt");
-        }
-        catch (IOException kesalahan) {
-            System.out.printf("Terjadi Kesalahan: %s", kesalahan);
-        }
-    }
+ 
     }
