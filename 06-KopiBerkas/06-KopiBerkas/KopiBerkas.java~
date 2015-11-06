@@ -9,7 +9,7 @@ public class KopiBerkas
     public static void main (String[] args) {
          try {
          KopiBerkas ko = new KopiBerkas();
-         ko.kopi("ujisasaran.txt", "tujuannn.txt");
+         ko.kopi("ujisasaran.txt", "tujuan.txt");
         }
         catch (IOException kesalahan) {
             System.out.println("Terjadi Kesalahan");

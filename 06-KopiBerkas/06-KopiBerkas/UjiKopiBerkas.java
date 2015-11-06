@@ -1,44 +1,64 @@
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
- 
-public class KopiBerkas
-{
-    
-   public void kopi(String sumber, String sasaran) throws IOException {
-        FileInputStream masukan = null;
-        FileOutputStream keluaran = null;
-        // Deklarasi variabel
-        try {
-            // Object stream untuk masukkan
-            masukan = new FileInputStream(sumber);
-            keluaran = new FileOutputStream(sasaran);
-            
-            // Coba baca  dari stream
-            int karakter = masukan.read();
-            // Selama masih ada data yang masih bisa dibaca
-            while (karakter != -1) {
-                // Lakukan sesuatu dengan data yang dibaca => Tampikan
-               keluaran.write(karakter);
-                // Coba baca lagi dari stream
-                karakter = masukan.read();
-            }
-           keluaran.flush();    
-          
-    
-        }
-        
-        finally {
-            // Tutup stream keluaran
-              if (masukan != null)
-                masukan.close();
-            if (keluaran != null)
-                keluaran.close();
-          
-        }  
+/**
+ * The test class UjiKopiBerkas.
+ *
+ * @author  (your name)
+ * @version (a version number or a date)
+ */
+public class UjiKopiBerkas {
+    public UjiKopiBerkas() { }
+
+    @Before
+    public void setUp() {
+        File file = new File(sumberStr);
+        if (file.exists() == true)
+            file.delete();
+        file = new File(sasaranStr);
+        if (file.exists() == true)
+            file.delete();
     }
+
+    @After
+    public void tearDown() {
+        File file = new File(sumberStr);
+        if (file.exists() == true)
+            file.delete();
+        file = new File(sasaranStr);
+        if (file.exists() == true)
+            file.delete();
     }
-        
     
+    @Test
+    public void kopi() throws IOException {
+        byte[] pesan = "Aaallloooeee dddooonnnyyyaaa...".getBytes();
+        
+        // Buat berkas uji
+        FileOutputStream sumber = new FileOutputStream(sumberStr);
+        sumber.write(pesan);
+        sumber.flush();
+        sumber.close();
+        
+        KopiBerkas kopiBerkas = new KopiBerkas();
+        kopiBerkas.kopi(sumberStr, sasaranStr);
+        
+        // Perikas apa hasil kopian benar
+        FileInputStream sasaran = new FileInputStream(sasaranStr);
+        byte[] bacaan = new byte[pesan.length];
+        sasaran.read(bacaan);
+        for (int indeks=0; indeks < pesan.length; ++indeks)
+            assertEquals(pesan[indeks], bacaan[indeks]);
+        sumber.close();
+    }
+    
+    private String sumberStr = "ujisumber.txt";
+    private String sasaranStr = "ujisasaran.txt";
+}
