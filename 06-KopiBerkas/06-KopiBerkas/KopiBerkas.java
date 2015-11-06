@@ -1,4 +1,4 @@
-
+ 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,14 +6,25 @@ import java.io.IOException;
  
 public class KopiBerkas
 {
-    
-   public void kopi(String sumber, String sasaran) throws IOException {
+    public static void main (String[] args) {
+         try {
+         KopiBerkas ko = new KopiBerkas();
+         ko.kopi("asal.txt", "tujuan.txt");
+        }
+        catch (IOException kesalahan) {
+            System.out.println("Terjadi Kesalahan");
+        }
+    }
+      
+        public void kopi(String sumber, String sasaran) throws IOException {
         FileInputStream masukan = null;
         FileOutputStream keluaran = null;
         // Deklarasi variabel
+       
         try {
             // Object stream untuk masukkan
             masukan = new FileInputStream(sumber);
+       
             keluaran = new FileOutputStream(sasaran);
             
             // Coba baca  dari stream
