@@ -1,4 +1,5 @@
-
+package Komdat.prak.Caesar;
+ 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class CaesarCipher
     }
 
     
-    public void enkripsi (String sumber, String sasaran)
+    public void enkripsi (String sumber, String sasaran)throws IOException
     { 
       
         FileInputStream masukan = null;
@@ -27,7 +28,7 @@ public class CaesarCipher
             int karakter = masukan.read();
             
             
-            while (Karakter != -1) {
+            while (karakter != -1) {
                 // Lakukan sesuatu dengan data yang dibaca => Tampikan
                karakter=shift;
                keluaran.write(karakter);
@@ -38,7 +39,7 @@ public class CaesarCipher
         }
         finally{
              if (masukan != null)
-                masukan.close();
+              masukan.close();               
                 
             if (keluaran != null)
                 keluaran.close();
@@ -46,7 +47,7 @@ public class CaesarCipher
         } 
     }
     
-        public void deskripsi (String sumber, String sasaran) throws IOException
+        public void dekripsi (String sumber, String sasaran) throws IOException
         { 
       
         FileInputStream masukan = null;
@@ -59,7 +60,7 @@ public class CaesarCipher
             int karakter = masukan.read();
             
             
-            while (Karakter != -1) {
+            while (karakter != -1) {
                 // Lakukan sesuatu dengan data yang dibaca => Tampikan
                karakter=shift;
                keluaran.write(karakter);
@@ -79,11 +80,12 @@ public class CaesarCipher
      
     public static void main (String[] args) {
          try {
-         KopiBerkas ko = new KopiBerkas();
-         ko.kopi("asal.txt", "tujuan.txt");
+         CaesarCipher k = new  CaesarCipher();
+         k.enkripsi("asal.txt", "tujuan.txt");
+         k.dekripsi("asal.txt", "tujuan.txt");
         }
         catch (IOException kesalahan) {
-            System.out.println("Terjadi Kesalahan");
+            System.out.printf("Terjadi Kesalahan: %s", kesalahan);
         }
     }
     }
