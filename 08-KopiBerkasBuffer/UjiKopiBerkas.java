@@ -8,8 +8,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class UjiCaesarCipher {
-    public UjiCaesarCipher() { }
+/**
+ * The test class UjiKopiBerkas.
+ *
+ * @author  (your name)
+ * @version (a version number or a date)
+ */
+public class UjiKopiBerkas {
+    public UjiKopiBerkas() { }
 
     @Before
     public void setUp() {
@@ -32,9 +38,8 @@ public class UjiCaesarCipher {
     }
     
     @Test
-    public void enkripsi() throws IOException {
+    public void kopi() throws IOException {
         byte[] pesan = "Aaallloooeee dddooonnnyyyaaa...".getBytes();
-        int shift = 5;
         
         // Buat berkas uji
         FileOutputStream sumber = new FileOutputStream(sumberStr);
@@ -42,41 +47,11 @@ public class UjiCaesarCipher {
         sumber.flush();
         sumber.close();
         
-        CaesarCipher caesarCipher = new CaesarCipher(shift);
-        caesarCipher.enkripsi(sumberStr, sasaranStr);
+        KopiBerkasBuffer kopiBerkasBuffer = new KopiBerkasBuffer();
+        kopiBerkasBuffer.kopi(sumberStr, sasaranStr);
         
         // Perikas apa hasil kopian benar
         FileInputStream sasaran = new FileInputStream(sasaranStr);
-        byte[] bacaan = new byte[pesan.length];
-        sasaran.read(bacaan);
-        for (int indeks=0; indeks < pesan.length; ++indeks)
-            assertEquals(shift + (int) pesan[indeks], (int) bacaan[indeks]);
-        sumber.close();
-    }
-
-    @Test
-    public void dekripsi() throws IOException {
-        byte[] pesan = "Aaallloooeee dddooonnnyyyaaa...hello World".getBytes();
-        int shift = 5;
-        
-        // Buat berkas uji
-        FileOutputStream sumber = new FileOutputStream(sumberStr);
-        sumber.write(pesan);
-        sumber.flush();
-        sumber.close();
-        
-        CaesarCipher caesarCipher = new CaesarCipher(shift);
-        // Enkripsi
-        caesarCipher.enkripsi(sumberStr, sasaranStr);
-        // Hapus sumbernya
-        File file = new File(sumberStr);
-        if (file.exists() == true)
-            file.delete();
-        // Dekripsi
-        caesarCipher.dekripsi(sasaranStr, sumberStr);
-        
-        // Perikas apa hasil kopian benar
-        FileInputStream sasaran = new FileInputStream(sumberStr);
         byte[] bacaan = new byte[pesan.length];
         sasaran.read(bacaan);
         for (int indeks=0; indeks < pesan.length; ++indeks)
@@ -84,6 +59,12 @@ public class UjiCaesarCipher {
         sumber.close();
     }
 
+    @Test
+    public void kopiBesar() throws IOException {
+        KopiBerkasBuffer kopiBerkasBuffer = new KopiBerkasBuffer();
+        kopiBerkasBuffer.kopi("OdeToJoy.mp3", "OdeToJoy-2.mp3");
+    }
+    
     private String sumberStr = "ujisumber.txt";
     private String sasaranStr = "ujisasaran.txt";
 }

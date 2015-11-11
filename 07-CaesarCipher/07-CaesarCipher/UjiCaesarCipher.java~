@@ -56,7 +56,7 @@ public class UjiCaesarCipher {
 
     @Test
     public void dekripsi() throws IOException {
-        byte[] pesan = "Aaallloooeee dddooonnnyyyaaa...hello World".getBytes();
+        byte[] pesan = "Aaallloooeee dddooonnnyyyaaa...".getBytes();
         int shift = 5;
         
         // Buat berkas uji
