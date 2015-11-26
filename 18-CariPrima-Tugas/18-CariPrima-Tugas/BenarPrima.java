@@ -1,14 +1,10 @@
 /**
  * Thread untuk memeriksa apakah suatu bilangan prima atau tidak.
  */
-import java.io.FileWriter;
-import java.io.IOException;
+ 
    
 public class BenarPrima implements Runnable {
-     private FileWriter berkas;
-  public BenarPrima(FileWriter berkas) {
-        this.berkas = berkas;
-    }
+  
     
     /**
      * Constructor
@@ -51,8 +47,7 @@ public class BenarPrima implements Runnable {
      * false.
      */
     public void benarPrima() { 
-          synchronized(berkas) {
-            try {
+         
                 if (angka <= 1) // Jika angka 1 berarti otomatis bukan prima
                 prima = false;
                 else {
@@ -60,32 +55,25 @@ public class BenarPrima implements Runnable {
                     for (int counter=2;          // Mulai periksa dari angka 2
                     counter<(angka/2+1);        // Periksa sampai setengahnya saja. Ingat
                                                 // hukum komutatif!
-                                      ++counter)
+                    ++counter)
                     if ((angka % counter) == 0) { // Jika habis dibagi berarti
                        prima = false;            // bukan prima
                        // Akhiri proses karena tidak perlu periksa angka yang lain
                        return ;                    
                      }
-                 berkas.write("%d"+angka);
-                }      
-            }
-            catch (IOException kesalahan) {
-                System.out.printf("Terjadi kesalahan: %s", kesalahan);
-            }
-        }
+                  
+                    }
     }
     
     /**
      * Main-nya thread
      */
     public void run() {
-        ///////////////////////////////////////////////////////////////////////
-        // MASUKKAN KODE ANDA DI BAWAH INI
+       
         selesai = false;
         benarPrima();
         selesai = true;
-        // MASUKKAN KODE ANDA DI ATAS INI
-        ///////////////////////////////////////////////////////////////////////
+         
     }
     
     // Angka yang mau diperiksa
