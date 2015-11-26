@@ -1,11 +1,4 @@
-/**
- * Thread untuk memeriksa apakah suatu bilangan prima atau tidak.
- */
- 
-   
 public class BenarPrima implements Runnable {
-  
-    
     /**
      * Constructor
      * 
@@ -46,34 +39,30 @@ public class BenarPrima implements Runnable {
      * seandainya bukan bilangan prima maka nilai variable prima akan dijadikan 
      * false.
      */
-    public void benarPrima() { 
-         
-                if (angka <= 1) // Jika angka 1 berarti otomatis bukan prima
-                prima = false;
-                else {
-                    prima = true;
-                    for (int counter=2;          // Mulai periksa dari angka 2
-                    counter<(angka/2+1);        // Periksa sampai setengahnya saja. Ingat
-                                                // hukum komutatif!
-                    ++counter)
-                    if ((angka % counter) == 0) { // Jika habis dibagi berarti
-                       prima = false;            // bukan prima
-                       // Akhiri proses karena tidak perlu periksa angka yang lain
-                       return ;                    
-                     }
-                  
-                    }
+    public void benarPrima() {        
+        if (angka <= 1) // Jika angka 1 berarti otomatis bukan prima
+            prima = false;
+        else {
+            prima = true;
+            for (int counter=2;       // Mulai periksa dari angka 2
+                 counter<(angka/2+1); // Periksa sampai setengahnya saja. Ingat
+                                      // hukum komutatif!
+                 ++counter)
+                if ((angka % counter) == 0) { // Jika habis dibagi berarti
+                    prima = false;            // bukan prima
+                    // Akhiri proses karena tidak perlu periksa angka yang lain
+                    return;                    
+                }
+        }
     }
     
     /**
      * Main-nya thread
      */
     public void run() {
-       
         selesai = false;
         benarPrima();
         selesai = true;
-         
     }
     
     // Angka yang mau diperiksa
