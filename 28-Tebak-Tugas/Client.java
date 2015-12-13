@@ -13,14 +13,16 @@ import java.io.BufferedWriter;
 import java.util.Scanner;
 
 public class Client {
-    public void chat() 
+    public void chat(String ip) 
                 throws UnknownHostException, IOException {
-        Socket socket = new Socket("localhost", 33333);
+        Socket socket = new Socket(ip, 33333);
         
         try {
             // Ketik
+            int tebak = 0;
+            while(tebak!=3){
             Scanner keyboard = new Scanner(System.in);
-            System.out.print("Pesan: ");
+            System.out.print("Tebak angka : ");
             String ketikanSatuBaris = keyboard.nextLine();
                     
             // Tulis ke socket
@@ -31,18 +33,21 @@ public class Client {
             keluaranBuff.flush();
                 
             // Baca dari Server
-            System.out.print("Dari server: ");
+            
+            System.out.print("Dari server : ");
             Reader masukan = new InputStreamReader(socket.getInputStream()); 
             BufferedReader masukanBuff = new BufferedReader(masukan);
             String baris = masukanBuff.readLine();
-            System.out.println(baris);             
-            
-            // Mengupperkan apa yang dituliskan oleh server
-            String diupperkan;
-            diupperkan = baris.toUpperCase();            
-            keluaranBuff.write(diupperkan);
-            keluaranBuff.flush();            
-            System.out.println("Pesan server yang telah diupperkan sudah terkirim");
+            System.out.println(baris);
+            if(baris.equals("Jawaban anda salah!")){
+                tebak++;
+                continue;
+            }
+            else{
+              socket.close();
+              break;
+            }
+           }
         }
         catch(IOException salah) {
             System.out.println(salah);
