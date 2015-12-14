@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 public class UtamaServer {
     public static void main(String[] args) 
                        throws UnknownHostException, IOException {
-        server server = new server();
+        Server server = new Server();
         server.dengar();
     }
 }

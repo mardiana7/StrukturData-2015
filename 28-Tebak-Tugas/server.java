@@ -12,8 +12,10 @@ import java.io.BufferedWriter;
 
 import java.util.Scanner;
 
-public class server {
-    public server() 
+public class Server {
+    private int angka=16;
+    
+    public Server() 
            throws BindException, IOException {
         serverSocket = new ServerSocket(33333);
     }
@@ -24,14 +26,16 @@ public class server {
             Socket koneksi = null;
             try {
                 koneksi = serverSocket.accept();
-                ProcessClientThread satuProcess = new ProcessClientThread(koneksi);
+                ProcessServerThread satuProcess = new ProcessServerThread(koneksi,angka);
                 Thread satuProcessThread = new Thread(satuProcess);
                 satuProcessThread.start();
+                //koneksi.close();
             }
             catch(IOException err) {
                 System.out.println(err);
             }
         }
     }
+
     private ServerSocket serverSocket = null;
 }
