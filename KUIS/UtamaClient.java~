@@ -11,7 +11,7 @@ public class UtamaClient {
             Client client = new Client("localhost", 33333);
 
             // Baca perintah
-            System.out.print("Perintah: ");
+            System.out.print("Masukkan Pesan Anda: ");
             String perintah = keyboard.nextLine();
             // Hilang spasi depan & belakang serta ubah ke huruf besar semua
             perintah = perintah.trim().toUpperCase();

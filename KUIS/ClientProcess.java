@@ -24,7 +24,7 @@ public class ClientProcess implements Runnable {
                 // Ambil InputStream
                 masukan = koneksi.getInputStream();
                 masukanReader = new BufferedReader(new InputStreamReader(masukan)); 
-                // Ambil OutputStream
+                // Ambil OutputStreamw
                 keluaran = koneksi.getOutputStream();
                 keluaranWriter = new BufferedWriter(new OutputStreamWriter(keluaran)); 
 
@@ -81,20 +81,20 @@ public class ClientProcess implements Runnable {
                 try{
                     int perubahan = Integer.parseInt(hasil[1]);
                     Calendar kalender = Calendar.getInstance();
-                    kalender.add(Calendar.HOUR_OF_DAY, perubahan-7); // WIB adalah GMT+7 sehingga -7 untuk waktu GMT
+                    kalender.add(Calendar.HOUR_OF_DAY, perubahan-7); // GMT+7
                     String waktu = kalender.getTime().toString();
                     keluaranWriter.write(waktu);
                     keluaranWriter.newLine();
                     keluaranWriter.flush();
                 }catch (NumberFormatException ex) {
                     //jika yang diinput user tidak sesuai ketentuan
-                    keluaranWriter.write("Perintah tidak dikenal !");
+                    keluaranWriter.write("PERINTAH GAGAL");
                     keluaranWriter.newLine();
                     keluaranWriter.flush();
                 }
             }
         else {
-            keluaranWriter.write("Perintah tidak dikenal !");
+            keluaranWriter.write("PERINTAH GAGAL");
             keluaranWriter.newLine();
             keluaranWriter.flush();
         }

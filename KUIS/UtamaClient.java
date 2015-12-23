@@ -8,7 +8,7 @@ public class UtamaClient {
             Scanner keyboard = new Scanner(System.in);
 
             // Buat client untuk berhubungan dengan server
-            Client client = new Client("localhost", 33333);
+            Client client = new Client("localhost", 33333);//ip local host
 
             // Baca perintah
             System.out.print("Masukkan Pesan Anda: ");
