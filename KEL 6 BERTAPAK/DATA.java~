@@ -60,19 +60,19 @@ public class DATA {
             int n=0;
             for(;n<group.size();n++){
                 ending = (Date)((group.get(n))[1]);
-                if(ending.stl(depan)&&ending.sbl(belakang)){
+                if(ending.after(depan)&&ending.before(belakang)){
                     Group = Group + "("+(String)((group.get(n))[0])+")";
                     langkahan++;
                 }
-                else if(ending.stl(belakang))
+                else if(ending.before(belakang))
                     break;
             }
             
        
         if(langkahan==0 && Group.length()==0)
-            return "EMPTY";
+            return "EMPTY FILE";
         
-            return "JUMLAH_LANGKAH"+langkahan+ "KOORDINAT = "+Group;
+            return "JUMLAH_LANGKAH = "+langkahan+ " KOORDINAT = "+Group;
       }
          catch(Exception e) {
                 return null;

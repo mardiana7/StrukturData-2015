@@ -9,6 +9,8 @@ public class UtamaClient {
             System.out.print("IP: ");
             String ipStr = keyboard.nextLine();
             
+            //String ipStr = "192.168.92.52";
+            
             // Buat client untuk berhubungan dengan server
             Client client = new Client();
             // Baca perintah
@@ -30,3 +32,4 @@ public class UtamaClient {
         }
     }
 }
+

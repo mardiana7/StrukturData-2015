@@ -6,12 +6,13 @@ public class UtamaClient {
         try {
             // Minta IP dari server
             Scanner keyboard = new Scanner(System.in);
-            System.out.print("IP: ");
-            String ipStr = keyboard.nextLine();
+            //System.out.print("IP: ");
+            //String ipStr = keyboard.nextLine();
+            
+            String ipStr = "192.168.92.52";
             
             // Buat client untuk berhubungan dengan server
             Client client = new Client();
-            
             // Baca perintah
             System.out.print("Pesan: ");
             String perintah = keyboard.nextLine();
@@ -31,3 +32,4 @@ public class UtamaClient {
         }
     }
 }
+
